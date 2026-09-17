@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* 鲜市 FreshMart —— 柠檬鲜绿体系
+       cream bg / dark olive ink / chartreuse accent */
+    --cream: #f7ffe4;
+    --cream-deep: #eef8d2;
+    --ink: #1f2611;
+    --olive: #5c693d;
+    --olive-soft: #8a9660;
+    --chartreuse: #c4c800;
+    --chartreuse-bright: #d9e000;
+    --paper: #fdfff5;
+
+    --background: 78 100% 95%;
+    --foreground: 79 32% 11%;
+    --card: 75 100% 98%;
+    --card-foreground: 79 32% 11%;
+    --popover: 75 100% 98%;
+    --popover-foreground: 79 32% 11%;
+    --primary: 63 100% 39%;
+    --primary-foreground: 79 32% 11%;
+    --secondary: 77 62% 90%;
+    --secondary-foreground: 79 24% 33%;
+    --muted: 77 62% 90%;
+    --muted-foreground: 78 15% 42%;
+    --accent: 63 100% 39%;
+    --accent-foreground: 79 32% 11%;
+    --destructive: 8 72% 45%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 78 25% 76%;
+    --input: 78 25% 76%;
+    --ring: 63 100% 39%;
+    --radius: 0.625rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-[#20261a] text-foreground antialiased;
+    font-family:
+      -apple-system,
+      'PingFang SC',
+      'Hiragino Sans GB',
+      'Microsoft YaHei',
+      'Noto Sans CJK SC',
+      sans-serif;
+  }
+
+  .mono {
+    font-family: 'Space Mono', 'PingFang SC', 'Microsoft YaHei', monospace;
+  }
+
+  /* 数字与拉丁字符优先使用等宽字体，中文回退系统字体 */
+  .num,
+  input,
+  button {
+    font-family:
+      'Space Mono',
+      -apple-system,
+      'PingFang SC',
+      'Microsoft YaHei',
+      monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .tracking-tag {
+    letter-spacing: 0.12em;
+  }
+  /* banner crossfade */
+  @keyframes fm-crossfade {
+    0% {
+      opacity: 0;
+      transform: scale(1.04);
+    }
+    8% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    33% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    41% {
+      opacity: 0;
+      transform: scale(0.985);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.04);
+    }
+  }
+  .slide-frame > * {
+    animation: fm-crossfade 9s linear infinite;
+    opacity: 0;
+  }
+  .slide-frame > *:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .slide-frame > *:nth-child(2) {
+    animation-delay: 3s;
+  }
+  .slide-frame > *:nth-child(3) {
+    animation-delay: 6s;
+  }
+
+  @keyframes fm-sheet-up {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  .sheet-up {
+    animation: fm-sheet-up 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes fm-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .fade-in {
+    animation: fm-fade-in 0.25s ease both;
+  }
+
+  @keyframes fm-pop {
+    0% {
+      transform: scale(0.4);
+      opacity: 0;
+    }
+    70% {
+      transform: scale(1.12);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  .pop-in {
+    animation: fm-pop 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes fm-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  .marquee-track {
+    animation: fm-marquee 18s linear infinite;
+  }
+
+  @keyframes fm-blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.25;
+    }
+  }
+  .blink {
+    animation: fm-blink 1.2s ease-in-out infinite;
+  }
+
+  @keyframes fm-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+  .float-slow {
+    animation: fm-float 4s ease-in-out infinite;
+  }
+}
